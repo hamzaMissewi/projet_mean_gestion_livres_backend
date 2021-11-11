@@ -1,63 +1,67 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-
+// const fileUpload = require('express-fileupload')
+// const cookieParser = require('cookie-parser')
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
+// const bodyparser = require("body-parser");
 const path = require("path");
 
 const app = express();
+// var app = express();
 
 app.use(express.json());
+// app.use(cookieParser());
+app.use(cors());
 
-// CORS Middleware
+// hedhi ki tzid file image upload yasna3 folder tmp f server
+// app.use(fileUpload({
+//     useTempFiles: true
+// }))
 
-var corsOptions = {
-  origin: "http://localhost:3000",
-};
-app.use(cors(corsOptions));
-
-// Set Static Folder
-app.use(express.static(path.join(__dirname, "public")));
-
-// Body Parser Middleware
-// app.use(bodyParser.json());
-
-// parse requests of content type - application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: true }));
-const users = require("./routes/userRouter");
-app.use("/user", users);
+// const userRouter = require("./routes/userRouter");
+// app.use("/user", userRouter); // ou bien
+// app.use("/user", require("./routes/userRouter"));
 // app.use("/api", require("./routes/bookRouter"));
 // app.use("/api", require("./routes/categoryRouter"));
 
 const URI = process.env.MONGODB_URL;
-mongoose
-  .connect(URI, {
+mongoose.connect(
+  URI,
+  {
+    // useCreateIndex: true,
+    // useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
-  })
-  .then(() => {
-    console.log("Connected to the database!");
-  })
-  .catch((err) => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
-  });
+  },
+  (err) => {
+    if (err) throw err;
+    console.log("welcome hamza to MongoDB ! connected !!");
+  }
+);
+// .then(() => {
+//   console.log("Connecté à backend de MEAN bibliothéque");
+// })
+// .catch((error) => console.log(error));
 
 // verification connexion à mongo : hedhi zeyda
-// const connection = mongoose.connection;
-// connection.once("open", () => {
-//   console.log("MongoDB database connection established successfully");
-// });
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
+});
 
 app.get("/", (req, res) => {
-  res.json({ msg: "Welcome to Bibliothéque MEAN application !" });
-  // res.send("Hamza Invalid Endpoint");
+  res.json({ msg: "Welcome to chaos !" });
 });
+
+// app.use("/", (req, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "build", "../frontend-angular/build/index.html")
+//   );
+// });
 
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-  console.log("Server running at " + port);
+  console.log("Server running at ", port);
 });

@@ -4,19 +4,6 @@ const authUser = require("./authUser");
 
 // register user here sign up
 router.post("/users", async (req, res) => {
-  // let newUser = new User({
-  //   // name: req.body.name,
-  //   username: req.body.username,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  // });
-  // User.addUser(newUser, (err, user) => {
-  //   if (err) {
-  //     res.json({ success: false, msg: "Failed to register user" });
-  //   } else {
-  //     res.json({ success: true, msg: "User registered" });
-  //   }
-  // });
   // console.log(req.body);
   try {
     const user = await User.create(req.body);

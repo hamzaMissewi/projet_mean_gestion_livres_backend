@@ -1,20 +1,24 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 // const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
     //  Schema types:
-    //  String - Number - Date - Buffer - Boolean - Mixed - ObjectId - Array - Decimal128 - Map - Schema
-    // id: {
-    //   type: Number,
-    //   required: true,
-    //   unique: true,
-    // },
+    //  String
+    // Number
+    // Date
+    // Buffer
+    // Boolean
+    // Mixed
+    // ObjectId
+    // Array
+    // Decimal128
+    // Map
+    // Schema
     username: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     email: {

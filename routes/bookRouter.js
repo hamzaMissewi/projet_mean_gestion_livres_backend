@@ -32,12 +32,11 @@ router.delete("/book", authUser, async (req, res) => {
   try {
     const deleteBook = req.body;
     deleteBook = await user.save();
-    deleteBook = filter(deleteBook.id != book.id);
+    deleteBook = filter(deleteBook.id != book.id)
     res.status(200).send();
   } catch (error) {
     // console.log(error);
     // res.status(500).send();
-  }
 });
 
 module.exports = router;
