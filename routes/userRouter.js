@@ -6,10 +6,17 @@ const User = require("../models/userModel");
 
 // register : create account
 router.post("/register", async (req, res) => {
+  //  partie crud application rest api youtube
+  const userdb = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  });
+  // *******
   try {
     const user = User.create(req.body);
     await user.generateToken();
-    res.send(user);
+    res.send(userdb);
     // res.status(200).send(user);
   } catch (e) {
     console.log(e);

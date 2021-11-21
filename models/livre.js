@@ -1,17 +1,19 @@
 const mongoose = require("mongoose");
 
+var url = "https://i.stack.imgur.com/34AD2.jpg";
 const bookSchema = new mongoose.Schema(
   {
-    // id: {
-    //   type: Number,
-    //   required: true,
-    //   unique: true,
-    // },
+    book_id: {
+      type: String,
+      unique: true,
+      trim: true,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
-      unique: true,
-      trim: true,
+      // unique: true,
+      // trim: true,
     },
     price: {
       type: Number,
@@ -26,14 +28,18 @@ const bookSchema = new mongoose.Schema(
       required: true,
     },
     profilePic: {
-      type: profilePic,
-      required: true,
+      // type: Object,
+      type: String,
+      required: false,
+      // default: url
     },
     category: {
       // type: String,
-      type: mongoose.Schema.Types.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
+      type: Object,
       required: false,
-      ref: "Category",
+      // ref: "Category",
+      default: "Science"
     },
     dateCreated: {
       type: Date,
@@ -53,3 +59,5 @@ const bookSchema = new mongoose.Schema(
 const Book = mongoose.model("Book", bookSchema);
 
 module.exports = Book;
+
+// ou bien: module.exports = mongoose.model("Book", bookSchema)

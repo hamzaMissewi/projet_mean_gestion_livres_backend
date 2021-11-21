@@ -5,7 +5,7 @@ const cors = require("cors");
 // const cookieParser = require('cookie-parser')
 const mongoose = require("mongoose");
 // const bodyparser = require("body-parser");
-const path = require("path");
+// const path = require("path");
 
 const app = express();
 // var app = express();
@@ -22,7 +22,7 @@ app.use(cors());
 // const userRouter = require("./routes/userRouter");
 // app.use("/user", userRouter); // ou bien
 // app.use("/user", require("./routes/userRouter"));
-// app.use("/api", require("./routes/bookRouter"));
+app.use("/api", require("./routes/bookRouter"));
 // app.use("/api", require("./routes/categoryRouter"));
 
 const URI = process.env.MONGODB_URL;
@@ -36,7 +36,7 @@ mongoose.connect(
   },
   (err) => {
     if (err) throw err;
-    console.log("welcome hamza to MongoDB ! connected !!");
+    console.log("welcome john wick to MongoDB ! connected !!");
   }
 );
 // .then(() => {
@@ -45,14 +45,15 @@ mongoose.connect(
 // .catch((error) => console.log(error));
 
 // verification connexion à mongo : hedhi zeyda
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-});
+// const connection = mongoose.connection;
+// connection.once("open", () => {
+//   console.log("MongoDB database connection established successfully");
+// });
 
-app.get("/", (req, res) => {
-  res.json({ msg: "Welcome to chaos !" });
-});
+// *********
+// app.get("/", (req, res) => {
+//   res.json({ msg: "Welcome to chaos !" });
+// });
 
 // app.use("/", (req, res) => {
 //   res.sendFile(
